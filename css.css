@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --verde-escuro: #1A3C34;
+    --verde-claro: #76B947;
+    --bege: #F4E9D7;
+    --branco: #FFFFFF;
+    --cinza: #E5E7EB;
+    --sombra: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--cinza);
+    color: var(--verde-escuro);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--verde-escuro), var(--verde-claro));
+    padding: 15px 0;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--sombra);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-text {
+    color: var(--branco);
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 10px;
+    transition: transform 0.3s;
+}
+
+.logo:hover .logo-text {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    color: var(--bege);
+    font-size: 24px;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li a {
+    color: var(--branco);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: block;
+    white-space: nowrap;
+}
+
+.nav-menu li a:hover, .nav-menu li a.active {
+    background-color: var(--bege);
+    color: var(--verde-escuro);
+    border-radius: 20px;
+}
+
+.menu-btn {
+    display: none;
+    color: var(--branco);
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.menu-open, .menu-close {
+    transition: opacity 0.3s ease;
+    display: inline;
+}
+
+#menu-toggle:checked ~ .menu-btn .menu-open {
+    display: none;
+}
+#menu-toggle:not(:checked) ~ .menu-btn .menu-close {
+    display: none;
+}
+
+/* Banner Styles */
+.banner-link {
+    display: block; /* Ensure the link takes block space */
+    text-decoration: none;
+    line-height: 0; /* Prevent extra space below image */
+}
+
+.banner-image {
+    display: block; /* Remove extra space below image */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio by default */
+    max-height: 75vh; /* Limit height to 75% of viewport height */
+    object-fit: cover; /* Cover the area, crop if needed */
+    object-position: center; /* Center the image if cropped */
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section:first-of-type {
+    /* No top padding adjustment needed now */
+}
+
+
+.section h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--verde-escuro);
+}
+
+.calculadoras-grid, .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.calc-card, .blog-card {
+    background: var(--branco);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calc-card:hover, .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.calc-card h3, .blog-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--verde-escuro);
+}
+
+.calc-card p, .blog-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.calc-card input, .calc-card select,
+.cadastro-form input, .cadastro-form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.calc-card input:focus, .calc-card select:focus,
+.cadastro-form input:focus, .cadastro-form select:focus {
+    outline: none;
+    border-color: var(--verde-claro);
+    box-shadow: 0 0 0 2px rgba(118, 185, 71, 0.2);
+}
+
+.calc-btn, .form-btn {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.calc-btn:hover, .form-btn:hover {
+    background-color: var(--verde-claro);
+    transform: translateY(-2px);
+}
+
+#imc-resultado, #tmb-resultado, #pi-resultado, #cadastro-resultado {
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--verde-escuro);
+}
+
+.dieta-section {
+    background: var(--bege);
+}
+.dieta-section h2 {
+    color: var(--verde-escuro);
+}
+.dieta-section p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.dieta-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.dieta-btn {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 12px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dieta-btn:hover {
+    background-color: var(--verde-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#cadastro {
+    background-color: var(--branco);
+}
+.cadastro-form {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.crianca-campos {
+    display: none;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.cadastro-form .form-btn {
+    display: block;
+    width: auto;
+    margin: 20px auto 0;
+    padding: 15px 40px;
+}
+
+#cadastro-resultado {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.blog-card p {
+    margin-bottom: 0;
+}
+
+footer {
+    background: var(--verde-escuro);
+    color: var(--bege);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 0;
+    }
+    .logo-text {
+        font-size: 24px;
+    }
+    .logo-icon {
+        font-size: 20px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background: var(--verde-escuro);
+        padding-top: 70px; /* Adjust based on actual navbar height */
+        transition: left 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    }
+
+    #menu-toggle:checked ~ .nav-menu {
+        left: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .nav-menu li a {
+        padding: 15px 20px;
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+    .nav-menu li a:hover, .nav-menu li a.active {
+        background-color: var(--bege);
+        color: var(--verde-escuro);
+        border-radius: 5px;
+    }
+
+    /* Adjust banner max-height for smaller screens if needed */
+    .banner-image {
+       /* max-height: 60vh; */ /* Example: reduce height further on mobile */
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section h2 {
+        font-size: 32px;
+    }
+
+    .calculadoras-grid, .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .calc-card, .blog-card {
+        padding: 25px;
+    }
+
+    .dieta-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    .dieta-btn {
+        width: 80%;
+        text-align: center;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
