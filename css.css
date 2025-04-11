@@ -5,8 +5,10 @@
     --verde-claro: #76B947;
     --bege: #F4E9D7;
     --branco: #FFFFFF;
-    --cinza: #E5E7EB;
-    --sombra: 0 10px 20px rgba(0, 0, 0, 0.1);
+    --cinza: #f0f0f0; /* Slightly adjusted grey */
+    --cinza-texto: #555;
+    --sombra: 0 8px 16px rgba(0, 0, 0, 0.08);
+    --sombra-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 * {
@@ -14,6 +16,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth; /* Add smooth scrolling */
+    scroll-padding-top: 80px; /* Offset for fixed navbar */
 }
 
 body {
@@ -23,7 +27,7 @@ body {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1200px; /* Slightly narrower for better readability */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -36,7 +40,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: var(--sombra);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -53,19 +57,19 @@ body {
 
 .logo-text {
     color: var(--branco);
-    font-size: 28px;
+    font-size: 26px; /* Slightly adjusted */
     font-weight: 700;
     margin-right: 10px;
     transition: transform 0.3s;
 }
 
 .logo:hover .logo-text {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .logo-icon {
     color: var(--bege);
-    font-size: 24px;
+    font-size: 22px; /* Slightly adjusted */
 }
 
 #menu-toggle {
@@ -87,12 +91,12 @@ body {
     transition: all 0.3s ease;
     display: block;
     white-space: nowrap;
+    border-radius: 20px; /* Apply border-radius here */
 }
 
 .nav-menu li a:hover, .nav-menu li a.active {
     background-color: var(--bege);
     color: var(--verde-escuro);
-    border-radius: 20px;
 }
 
 .menu-btn {
@@ -112,40 +116,30 @@ body {
     display: inline;
 }
 
-#menu-toggle:checked ~ .menu-btn .menu-open {
-    display: none;
-}
-#menu-toggle:not(:checked) ~ .menu-btn .menu-close {
-    display: none;
-}
+#menu-toggle:checked ~ .menu-btn .menu-open { display: none; }
+#menu-toggle:not(:checked) ~ .menu-btn .menu-close { display: none; }
 
-/* Banner Styles */
 .banner-link {
-    display: block; /* Ensure the link takes block space */
+    display: block;
     text-decoration: none;
-    line-height: 0; /* Prevent extra space below image */
+    line-height: 0;
 }
 
 .banner-image {
-    display: block; /* Remove extra space below image */
+    display: block;
     width: 100%;
-    height: auto; /* Maintain aspect ratio by default */
-    max-height: 75vh; /* Limit height to 75% of viewport height */
-    object-fit: cover; /* Cover the area, crop if needed */
-    object-position: center; /* Center the image if cropped */
+    height: auto;
+    max-height: 75vh;
+    object-fit: cover;
+    object-position: center;
 }
 
 .section {
     padding: 80px 0;
 }
 
-.section:first-of-type {
-    /* No top padding adjustment needed now */
-}
-
-
 .section h2 {
-    font-size: 42px;
+    font-size: 38px; /* Adjusted */
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
@@ -158,30 +152,38 @@ body {
     gap: 30px;
 }
 
-.calc-card, .blog-card {
+.calc-card, .blog-card, .dieta-card {
     background: var(--branco);
     padding: 30px;
     border-radius: 15px;
     box-shadow: var(--sombra);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Added margin for diet cards */
 }
 
-.calc-card:hover, .blog-card:hover {
+.calc-card:hover, .blog-card:hover, .dieta-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--sombra-hover);
 }
 
-.calc-card h3, .blog-card h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: var(--verde-escuro);
-}
-
-.calc-card p, .blog-card p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
+.calc-card h3, .blog-card h3, .dieta-card h3 {
+    font-size: 22px; /* Adjusted */
     margin-bottom: 20px;
+    color: var(--verde-escuro);
+    display: flex; /* For icon alignment */
+    align-items: center; /* For icon alignment */
+}
+
+.icon-title {
+    margin-right: 10px;
+    color: var(--verde-claro); /* Icon color */
+}
+
+.calc-card p, .blog-card p, .dieta-card p {
+    font-size: 16px;
+    line-height: 1.7; /* Improved line spacing */
+    color: var(--cinza-texto);
+    margin-bottom: 15px;
 }
 
 .calc-card input, .calc-card select,
@@ -192,14 +194,14 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .calc-card input:focus, .calc-card select:focus,
 .cadastro-form input:focus, .cadastro-form select:focus {
     outline: none;
     border-color: var(--verde-claro);
-    box-shadow: 0 0 0 2px rgba(118, 185, 71, 0.2);
+    box-shadow: 0 0 0 3px rgba(118, 185, 71, 0.2); /* More visible focus */
 }
 
 .calc-btn, .form-btn {
@@ -219,12 +221,14 @@ body {
 .calc-btn:hover, .form-btn:hover {
     background-color: var(--verde-claro);
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 #imc-resultado, #tmb-resultado, #pi-resultado, #cadastro-resultado {
     margin-top: 15px;
     font-weight: 600;
     color: var(--verde-escuro);
+    min-height: 1.5em; /* Prevent layout shift */
 }
 
 .dieta-section {
@@ -235,7 +239,7 @@ body {
 }
 .dieta-section p {
     text-align: center;
-    color: #555;
+    color: var(--cinza-texto);
     margin-bottom: 30px;
 }
 
@@ -250,8 +254,8 @@ body {
 .dieta-btn {
     background-color: var(--verde-escuro);
     color: var(--branco);
-    padding: 12px 25px;
-    border-radius: 20px;
+    padding: 12px 30px; /* Slightly larger */
+    border-radius: 25px; /* More rounded */
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -260,7 +264,7 @@ body {
 
 .dieta-btn:hover {
     background-color: var(--verde-claro);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.03); /* Add scale effect */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -295,11 +299,77 @@ body {
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
+    min-height: 1.5em; /* Prevent layout shift */
 }
 
 .blog-card p {
     margin-bottom: 0;
 }
+
+/* Dietas.html Specific Styles */
+#sugestoes .intro-p {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    color: var(--cinza-texto);
+    font-size: 17px; /* Slightly larger intro text */
+}
+
+.dieta-card h4 {
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: var(--verde-escuro);
+    font-weight: 600;
+}
+
+.dieta-card ul {
+    list-style: none;
+    padding-left: 5px; /* Adjust if using icons */
+    margin-bottom: 20px;
+}
+
+.dieta-card ul li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    display: flex; /* For icon alignment */
+    align-items: flex-start; /* Align icon with top of text */
+}
+
+.list-icon {
+    color: var(--verde-claro);
+    margin-right: 10px;
+    margin-top: 4px; /* Fine-tune vertical alignment */
+    font-size: 14px; /* Adjust icon size */
+}
+
+.disclaimer {
+    font-size: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fdf7e8; /* Light beige background */
+    border-left: 4px solid #f0ad4e; /* Warning color border */
+    color: #8a6d3b; /* Darker text for contrast */
+    border-radius: 0 5px 5px 0;
+    display: flex; /* For icon alignment */
+    align-items: center; /* For icon alignment */
+}
+
+.warn-icon, .info-icon {
+    margin-right: 10px;
+    font-size: 18px; /* Icon size */
+}
+.warn-icon { color: #f0ad4e; }
+.info-icon { color: #31708f; } /* Info color */
+.dieta-card #vida-saudavel .disclaimer { /* Different style for info */
+     background-color: #e7f3f8;
+     border-left-color: #31708f;
+     color: #31708f;
+}
+
 
 footer {
     background: var(--verde-escuro);
@@ -311,19 +381,11 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        padding: 10px 0;
-    }
-    .logo-text {
-        font-size: 24px;
-    }
-    .logo-icon {
-        font-size: 20px;
-    }
+    .navbar { padding: 10px 0; }
+    .logo-text { font-size: 22px; }
+    .logo-icon { font-size: 18px; }
 
-    .menu-btn {
-        display: block;
-    }
+    .menu-btn { display: block; }
 
     .nav-menu {
         position: fixed;
@@ -332,7 +394,7 @@ footer {
         width: 250px;
         height: 100vh;
         background: var(--verde-escuro);
-        padding-top: 70px; /* Adjust based on actual navbar height */
+        padding-top: 70px;
         transition: left 0.3s ease-in-out;
         display: flex;
         flex-direction: column;
@@ -341,9 +403,7 @@ footer {
         box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     }
 
-    #menu-toggle:checked ~ .nav-menu {
-        left: 0;
-    }
+    #menu-toggle:checked ~ .nav-menu { left: 0; }
 
     .nav-menu li {
         width: 100%;
@@ -364,38 +424,33 @@ footer {
         border-radius: 5px;
     }
 
-    /* Adjust banner max-height for smaller screens if needed */
-    .banner-image {
-       /* max-height: 60vh; */ /* Example: reduce height further on mobile */
-    }
+    .banner-image { max-height: 60vh; }
 
-    .section {
-        padding: 60px 0;
-    }
-
-    .section h2 {
-        font-size: 32px;
-    }
+    .section { padding: 60px 0; }
+    .section h2 { font-size: 30px; } /* Adjusted */
 
     .calculadoras-grid, .blog-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    .calc-card, .blog-card {
+    .calc-card, .blog-card, .dieta-card {
         padding: 25px;
+        margin-bottom: 20px; /* Adjusted margin */
     }
+
+     .calc-card h3, .blog-card h3, .dieta-card h3 { font-size: 20px; }
 
     .dieta-options {
         flex-direction: column;
         align-items: center;
+        gap: 15px; /* Reduced gap */
     }
     .dieta-btn {
         width: 80%;
         text-align: center;
+        padding: 12px 20px; /* Adjust padding */
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+    .form-grid { grid-template-columns: 1fr; }
 }

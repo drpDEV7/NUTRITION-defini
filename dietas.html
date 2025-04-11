@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões de Dieta - Nutrition Defini</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Nutrition Defini</span>
+                <i class="fas fa-leaf logo-icon"></i>
+            </a>
+
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">
+                <i class="fas fa-bars menu-open"></i>
+                <i class="fas fa-times menu-close" style="display: none;"></i>
+            </label>
+            <ul class="nav-menu">
+                <li><a href="index.html#calculadoras" onclick="closeMenu()">Calculadoras</a></li>
+                <li><a href="dietas.html" onclick="closeMenu()" class="active">Dietas</a></li>
+                <li><a href="index.html#cadastro" onclick="closeMenu()">Cadastro</a></li>
+                <li><a href="index.html#blog" onclick="closeMenu()">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="sugestoes" class="section">
+            <div class="container">
+                <h2>Sugestões de Dieta</h2>
+                <p class="intro-p">Encontre aqui orientações gerais para seu objetivo. Lembre-se que estas são sugestões e o ideal é sempre consultar um nutricionista para um plano personalizado.</p>
+
+                <div id="ganho-peso" class="dieta-card">
+                    <h3><i class="fas fa-dumbbell icon-title"></i> Dieta para Ganho de Peso</h3>
+                    <p>Para ganhar peso de forma saudável, o foco é aumentar a ingestão calórica com alimentos nutritivos, priorizando proteínas e carboidratos complexos.</p>
+                    <h4>Sugestões Gerais:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle list-icon"></i> Aumente a frequência das refeições (5-6 por dia).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Inclua lanches calóricos e nutritivos entre as refeições (ex: mix de castanhas, iogurte integral com frutas e granola, vitaminas com abacate ou pasta de amendoim).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Priorize fontes de proteína magra (frango, peixe, ovos, leguminosas, tofu) em todas as refeições principais.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Consuma carboidratos complexos (arroz integral, batata doce, aveia, pão integral).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Adicione gorduras boas (azeite de oliva, abacate, oleaginosas).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Combine a dieta com treino de força para estimular o ganho de massa muscular.</li>
+                    </ul>
+                    <p class="disclaimer"><i class="fas fa-exclamation-triangle warn-icon"></i> <strong>Atenção:</strong> Ganhar peso rapidamente com alimentos ultraprocessados não é saudável. Foque na qualidade.</p>
+                </div>
+
+                <div id="perda-peso" class="dieta-card">
+                     <h3><i class="fas fa-weight-scale icon-title"></i> Dieta para Perda de Peso</h3>
+                    <p>A perda de peso sustentável envolve um déficit calórico moderado, combinado com escolhas alimentares inteligentes e atividade física regular.</p>
+                    <h4>Sugestões Gerais:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle list-icon"></i> Crie um déficit calórico controlado (não restritivo demais).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Priorize alimentos ricos em fibras (vegetais, frutas, legumes, grãos integrais) para aumentar a saciedade.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Consuma proteínas magras em todas as refeições para preservar a massa muscular e ajudar na saciedade.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Beba bastante água ao longo do dia.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Evite bebidas açucaradas (refrigerantes, sucos industrializados).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Reduza o consumo de alimentos ultraprocessados, ricos em gorduras saturadas, sódio e açúcares.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Controle o tamanho das porções.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Pratique atividade física regularmente.</li>
+                    </ul>
+                     <p class="disclaimer"><i class="fas fa-exclamation-triangle warn-icon"></i> <strong>Atenção:</strong> Dietas muito restritivas podem ser prejudiciais e difíceis de manter a longo prazo.</p>
+               </div>
+
+                <div id="vida-saudavel" class="dieta-card">
+                     <h3><i class="fas fa-heartbeat icon-title"></i> Dieta para uma Vida Saudável</h3>
+                    <p>Manter uma vida saudável envolve equilíbrio, variedade e moderação na alimentação, além de hábitos como atividade física e bom sono.</p>
+                    <h4>Sugestões Gerais:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle list-icon"></i> Baseie sua alimentação em alimentos in natura ou minimamente processados (frutas, verduras, legumes, grãos integrais, carnes magras, ovos, leguminosas).</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Varie os tipos de alimentos consumidos para garantir a ingestão de diferentes nutrientes.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Modere o consumo de óleos, gorduras, sal e açúcar.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Limite alimentos processados e evite ultraprocessados.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Faça das refeições momentos tranquilos e de atenção plena.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Mantenha-se hidratado.</li>
+                        <li><i class="fas fa-check-circle list-icon"></i> Combine a alimentação com atividade física regular e sono reparador.</li>
+                    </ul>
+                     <p class="disclaimer"><i class="fas fa-info-circle info-icon"></i> <strong>Lembre-se:</strong> Saúde é um conceito amplo que vai além do peso. Foque no bem-estar geral.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Nutrition Defini. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="sc.js"></script>
+</body>
+</html>
