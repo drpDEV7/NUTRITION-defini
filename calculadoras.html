@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras Nutricionais - Nutrition Defini</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Nutrition Defini</span>
+                <i class="fas fa-leaf logo-icon"></i>
+            </a>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">
+                <i class="fas fa-bars menu-open"></i>
+                <i class="fas fa-times menu-close" style="display: none;"></i>
+            </label>
+            <ul class="nav-menu">
+                <li><a href="calculadoras.html" onclick="closeMenu()" class="active">Calculadoras</a></li>
+                <li><a href="dietas.html" onclick="closeMenu()">Dietas</a></li>
+                <li><a href="index.html#cadastro" onclick="closeMenu()">Cadastro</a></li>
+                <li><a href="index.html#blog" onclick="closeMenu()">Blog</a></li>
+                <li><a href="index.html#faq" onclick="closeMenu()">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="calculadora-section" class="section">
+            <div class="container">
+                <h2>Calculadoras Nutricionais</h2>
+                <p class="intro-p" style="max-width: 800px; margin: -20px auto 40px auto;">Use nossas ferramentas para obter estimativas sobre seu IMC, TMB e Peso Ideal. Lembre-se, são apenas estimativas!</p>
+
+                <div class="tipo-calculadora-selector">
+                    <p>Para quem você deseja calcular?</p>
+                    <button id="btn-adulto" class="tipo-btn active">Adulto (19+ anos)</button>
+                    <button id="btn-crianca" class="tipo-btn">Criança / Adolescente (0-19 anos)</button>
+                </div>
+
+                <div id="calculadoras-wrapper">
+
+                    <div id="calculadoras-adulto" class="calculadoras-container">
+                        <h3 class="calc-section-title">Calculadoras para Adultos</h3>
+                        <div class="calculadoras-grid-ext">
+                            <div class="calc-item">
+                                <div class="calc-card">
+                                    <h4><i class="fas fa-calculator icon-title"></i>IMC (Adulto)</h4>
+                                    <input type="number" placeholder="Peso (kg)" id="imc-peso" step="0.1">
+                                    <input type="number" placeholder="Altura (m)" id="imc-altura" step="0.01">
+                                    <button onclick="calcularIMC()" class="calc-btn">Calcular</button>
+                                    <p id="imc-resultado" class="resultado-calc"></p>
+                                </div>
+                                <div class="interpretacao-card">
+                                    <h4><i class="fas fa-info-circle icon-title"></i>Interpretação IMC (Adulto - OMS)</h4>
+                                    <table>
+                                        <thead>
+                                            <tr><th>IMC (kg/m²)</th><th>Classificação</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Abaixo de 18.5</td><td>Abaixo do peso</td></tr>
+                                            <tr><td>18.5 - 24.9</td><td>Peso normal</td></tr>
+                                            <tr><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
+                                            <tr><td>30.0 - 34.9</td><td>Obesidade Grau I</td></tr>
+                                            <tr><td>35.0 - 39.9</td><td>Obesidade Grau II</td></tr>
+                                            <tr><td>Acima de 40.0</td><td>Obesidade Grau III</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="disclaimer-calc"><i class="fas fa-exclamation-triangle"></i> Não diferencia massa gorda/magra. Consulte um profissional.</p>
+                                </div>
+                            </div>
+
+                             <div class="calc-item">
+                                <div class="calc-card">
+                                    <h4><i class="fas fa-fire icon-title"></i>TMB (Adulto)</h4>
+                                    <select id="tmb-sexo">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                    </select>
+                                    <input type="number" placeholder="Peso (kg)" id="tmb-peso" step="0.1">
+                                    <input type="number" placeholder="Altura (cm)" id="tmb-altura">
+                                    <input type="number" placeholder="Idade (anos)" id="tmb-idade">
+                                    <button onclick="calcularTMB()" class="calc-btn">Calcular</button>
+                                    <p id="tmb-resultado" class="resultado-calc"></p>
+                                </div>
+                                <div class="interpretacao-card">
+                                     <h4><i class="fas fa-question-circle icon-title"></i>O que é TMB?</h4>
+                                     <p>A Taxa Metabólica Basal (TMB) estima as calorias que seu corpo queima em repouso total para manter funções vitais.</p>
+                                     <p>É um ponto de partida para calcular suas necessidades calóricas diárias totais, que incluem também a energia gasta em atividades.</p>
+                                     <p class="disclaimer-calc"><i class="fas fa-info-circle"></i> Fórmula de Harris-Benedict (Revisada). É uma estimativa. Consulte um profissional.</p>
+                                </div>
+                            </div>
+
+                             <div class="calc-item">
+                                <div class="calc-card">
+                                    <h4><i class="fas fa-balance-scale icon-title"></i>Peso Ideal (Adulto)</h4>
+                                    <select id="pi-sexo">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                    </select>
+                                    <input type="number" placeholder="Altura (cm)" id="pi-altura">
+                                    <button onclick="calcularPesoIdeal()" class="calc-btn">Calcular</button>
+                                    <p id="pi-resultado" class="resultado-calc"></p>
+                                </div>
+                                 <div class="interpretacao-card">
+                                    <h4><i class="fas fa-ruler icon-title"></i>Sobre o Peso Ideal</h4>
+                                    <p>Fórmulas de peso ideal (como a de Devine usada aqui) são muito simplificadas.</p>
+                                    <p>Não consideram fatores importantes como composição corporal (músculos vs. gordura), estrutura óssea ou saúde individual.</p>
+                                     <p>Focar em hábitos saudáveis e numa faixa de IMC adequada é geralmente mais útil do que um número específico.</p>
+                                     <p class="disclaimer-calc"><i class="fas fa-exclamation-triangle"></i> Use apenas como referência geral. Não substitui avaliação profissional.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="calculadoras-crianca" class="calculadoras-container" style="display: none;">
+                         <h3 class="calc-section-title">Calculadora para Crianças e Adolescentes (0-19 anos)</h3>
+                         <div class="calculadoras-grid-ext">
+                             <div class="calc-item">
+                                <div class="calc-card">
+                                    <h4><i class="fas fa-child icon-title"></i>IMC Infantil</h4>
+                                     <select id="imc-infantil-sexo">
+                                        <option value="masculino">Menino</option>
+                                        <option value="feminino">Menina</option>
+                                    </select>
+                                    <input type="number" placeholder="Idade (anos completos)" id="imc-infantil-idade-anos" min="0" max="19">
+                                    <input type="number" placeholder="Meses adicionais (0-11)" id="imc-infantil-idade-meses" min="0" max="11">
+                                    <input type="number" placeholder="Peso (kg)" id="imc-infantil-peso" step="0.1">
+                                    <input type="number" placeholder="Altura (m)" id="imc-infantil-altura" step="0.01">
+                                    <button onclick="calcularIMCInfantil()" class="calc-btn">Calcular</button>
+                                    <p id="imc-infantil-resultado" class="resultado-calc"></p>
+                                </div>
+                                <div class="interpretacao-card interpretation-warning">
+                                    <h4><i class="fas fa-exclamation-triangle warn-icon"></i> Interpretação do IMC Infantil</h4>
+                                    <p><strong>Atenção Máxima:</strong> O valor de IMC calculado para crianças e adolescentes <strong>NÃO</strong> usa a mesma tabela dos adultos. A interpretação é completamente diferente!</p>
+                                    <p>O resultado precisa ser plotado em <strong>curvas de crescimento por percentil</strong> (ex: gráficos da OMS), que consideram sexo e idade precisa (em meses). Somente com essas curvas um profissional de saúde pode classificar o estado nutricional:</p>
+                                    <ul>
+                                        <li>Baixo Peso</li>
+                                        <li>Peso Adequado (Eutrofia)</li>
+                                        <li>Sobrepeso</li>
+                                        <li>Obesidade</li>
+                                        <li>Obesidade Grave</li>
+                                    </ul>
+                                    <p><strong>Leve o resultado (IMC, idade, sexo, peso, altura) a um pediatra ou nutricionista para a correta interpretação.</strong></p>
+                                     <p class="disclaimer-calc"><i class="fas fa-user-md"></i> Avaliação profissional é essencial!</p>
+                                </div>
+                            </div>
+                             <div class="calc-item placeholder"></div>
+                             <div class="calc-item placeholder"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Nutrition Defini. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+     <a href="https://wa.me/5516997979797" target="_blank" id="whatsapp-float" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="sc.js"></script>
+</body>
+</html>

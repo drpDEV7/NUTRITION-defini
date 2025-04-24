@@ -11,7 +11,7 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <span class="logo-text">Nutrition Defini</span>
                 <i class="fas fa-leaf logo-icon"></i>
             </a>
@@ -21,11 +21,11 @@
                 <i class="fas fa-times menu-close" style="display: none;"></i>
             </label>
             <ul class="nav-menu">
-                <li><a href="#calculadoras" onclick="closeMenu()">Calculadoras</a></li>
+                <li><a href="calculadoras.html" onclick="closeMenu()">Calculadoras</a></li>
                 <li><a href="dietas.html" onclick="closeMenu()">Dietas</a></li>
-                <li><a href="#cadastro" onclick="closeMenu()">Cadastro</a></li>
-                <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
-                <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
+                <li><a href="index.html#cadastro" onclick="closeMenu()">Cadastro</a></li>
+                <li><a href="index.html#blog" onclick="closeMenu()">Blog</a></li>
+                <li><a href="index.html#faq" onclick="closeMenu()">FAQ</a></li>
             </ul>
         </div>
     </nav>
@@ -33,57 +33,6 @@
     <a href="#cadastro" class="banner-link">
         <img src="img/banner.png" alt="Nutrition Defini - Comece Agora" class="banner-image">
     </a>
-
-    <section id="calculadoras" class="section">
-        <div class="container">
-            <h2>Calculadoras Nutricionais</h2>
-            <div class="calculadoras-grid">
-                <div class="calc-card">
-                    <h3>IMC (Adulto)</h3>
-                    <input type="number" placeholder="Peso (kg)" id="imc-peso" step="0.1">
-                    <input type="number" placeholder="Altura (m)" id="imc-altura" step="0.01">
-                    <button onclick="calcularIMC()" class="calc-btn">Calcular</button>
-                    <p id="imc-resultado"></p>
-                </div>
-                <div class="calc-card">
-                    <h3>TMB (Adulto)</h3>
-                    <select id="tmb-sexo">
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                    </select>
-                    <input type="number" placeholder="Peso (kg)" id="tmb-peso" step="0.1">
-                    <input type="number" placeholder="Altura (cm)" id="tmb-altura">
-                    <input type="number" placeholder="Idade" id="tmb-idade">
-                    <button onclick="calcularTMB()" class="calc-btn">Calcular</button>
-                    <p id="tmb-resultado"></p>
-                </div>
-                <div class="calc-card">
-                    <h3>Peso Ideal (Adulto)</h3>
-                    <select id="pi-sexo">
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                    </select>
-                    <input type="number" placeholder="Altura (cm)" id="pi-altura">
-                    <button onclick="calcularPesoIdeal()" class="calc-btn">Calcular</button>
-                    <p id="pi-resultado"></p>
-                </div>
-                 <div class="calc-card">
-                    <h3>IMC Infantil (0-19 anos)</h3>
-                    <select id="imc-infantil-sexo">
-                        <option value="masculino">Menino</option>
-                        <option value="feminino">Menina</option>
-                    </select>
-                    <input type="number" placeholder="Idade (anos)" id="imc-infantil-idade-anos" min="0" max="19">
-                    <input type="number" placeholder="Idade (meses)" id="imc-infantil-idade-meses" min="0" max="11">
-                    <input type="number" placeholder="Peso (kg)" id="imc-infantil-peso" step="0.1">
-                    <input type="number" placeholder="Altura (m)" id="imc-infantil-altura" step="0.01">
-                    <button onclick="calcularIMCInfantil()" class="calc-btn">Calcular</button>
-                    <p id="imc-infantil-resultado"></p>
-                </div>
-            </div>
-             <p style="text-align: center; margin-top: 20px; color: var(--cinza-texto);">Lembre-se: calculadoras oferecem estimativas. Consulte sempre um profissional de saúde.</p>
-        </div>
-    </section>
 
     <section id="dieta" class="section dieta-section">
         <div class="container">
@@ -94,27 +43,29 @@
                 <a href="dietas.html#perda-peso" class="dieta-btn">Perda de Peso</a>
                 <a href="dietas.html#vida-saudavel" class="dieta-btn">Vida Saudável</a>
             </div>
+             <p style="margin-top: 40px;"><a href="calculadoras.html" class="dieta-btn" style="background-color: var(--verde-claro); color: var(--verde-escuro);">Acessar Nossas Calculadoras</a></p>
         </div>
     </section>
 
     <section id="cadastro" class="section">
         <div class="container">
             <h2>Cadastre-se</h2>
-            <form class="cadastro-form" id="cadastro-form" onsubmit="event.preventDefault(); cadastrarCliente();">
+            <p style="text-align:center; margin-top:-20px; margin-bottom: 30px; color: var(--cinza-texto)">Preencha os campos abaixo (campos com * são obrigatórios).</p>
+            <form class="cadastro-form" id="cadastro-form" novalidate onsubmit="event.preventDefault(); cadastrarCliente();">
                 <div class="form-grid">
-                    <input type="text" placeholder="Nome" id="nome" required>
-                    <input type="email" placeholder="E-mail" id="email" required>
-                    <input type="number" placeholder="Peso (kg)" id="peso" step="0.1" required>
-                    <input type="number" placeholder="Altura (cm)" id="altura" required>
-                    <input type="number" placeholder="Idade" id="idade" required>
+                    <input type="text" placeholder="Nome*" id="nome" required>
+                    <input type="email" placeholder="E-mail*" id="email" required>
+                    <input type="number" placeholder="Peso (kg)*" id="peso" step="0.1" required>
+                    <input type="number" placeholder="Altura (cm)*" id="altura" required>
+                    <input type="number" placeholder="Idade*" id="idade" required>
                     <select id="tipo-cliente" onchange="toggleCamposCrianca()" required>
-                        <option value="">Tipo de Cliente</option>
+                        <option value="">Tipo de Cliente*</option>
                         <option value="adulto">Adulto</option>
-                        <option value="crianca">Criança</option>
+                        <option value="crianca">Criança/Adolescente</option>
                     </select>
-                    <input type="text" placeholder="Tabaco (sim/não)" id="tabaco" required>
-                    <input type="text" placeholder="Álcool (sim/não)" id="alcool" required>
-                    <input type="text" placeholder="Drogas (sim/não)" id="drogas" required>
+                    <input type="text" placeholder="Tabaco (sim/não)*" id="tabaco" required>
+                    <input type="text" placeholder="Álcool (sim/não)*" id="alcool" required>
+                    <input type="text" placeholder="Drogas (sim/não)*" id="drogas" required>
                 </div>
                 <div id="campos-crianca" class="form-grid crianca-campos">
                     <input type="date" placeholder="Data de Nascimento" id="data-nascimento">
@@ -127,6 +78,8 @@
                         <option value="creche">Creche</option>
                         <option value="pre-escola">Pré-escola</option>
                         <option value="ensino-fundamental">Ensino Fundamental</option>
+                        <option value="ensino-medio">Ensino Médio</option>
+                        <option value="nao-aplica">Não se aplica</option>
                     </select>
                 </div>
                 <button type="submit" class="form-btn">Cadastrar</button>
@@ -142,14 +95,17 @@
                 <div class="blog-card">
                     <h3>Interpretando o IMC</h3>
                     <p>Aprenda como usar o Índice de Massa Corporal (IMC) para ter uma ideia inicial sobre sua faixa de peso. É uma ferramenta útil, mas lembre-se que fatores como massa muscular podem influenciar. Consulte sempre um profissional.</p>
+                     <a href="calculadoras.html" class="link-discreto">Calcular IMC</a>
                 </div>
                 <div class="blog-card">
                     <h3>Vida Saudável</h3>
                     <p>Dicas práticas para melhorar seu dia a dia. Pequenas mudanças, como beber mais água, incluir mais vegetais nas refeições e fazer caminhadas curtas, podem ter um grande impacto na sua saúde e bem-estar geral.</p>
+                    <a href="dietas.html#vida-saudavel" class="link-discreto">Ver Dicas</a>
                 </div>
                 <div class="blog-card">
                     <h3>Nutrição Infantil</h3>
                     <p>Como cuidar da alimentação das crianças. Uma dieta balanceada é crucial para o crescimento e desenvolvimento. Incentive o consumo de frutas, legumes e grãos integrais, tornando as refeições momentos divertidos e educativos.</p>
+                     <a href="calculadoras.html" class="link-discreto">Calcular IMC Infantil</a>
                 </div>
             </div>
         </div>
@@ -169,7 +125,7 @@
                 </details>
                 <details class="faq-item">
                     <summary class="faq-question">Como funciona o cadastro?</summary>
-                    <p class="faq-answer">O cadastro coleta informações básicas para entendermos melhor seu perfil. Esses dados nos ajudam a oferecer conteúdo relevante, mas não constituem uma avaliação nutricional completa.</p>
+                    <p class="faq-answer">O cadastro coleta informações básicas para entendermos melhor seu perfil (campos marcados com * são obrigatórios). Esses dados nos ajudam a oferecer conteúdo relevante, mas não constituem uma avaliação nutricional completa.</p>
                 </details>
                  <details class="faq-item">
                     <summary class="faq-question">O que é TMB?</summary>
@@ -177,7 +133,7 @@
                 </details>
                  <details class="faq-item">
                     <summary class="faq-question">Como interpretar o IMC Infantil?</summary>
-                    <p class="faq-answer">O valor de IMC calculado para crianças e adolescentes (0-19 anos) não é interpretado da mesma forma que o de adultos. Ele deve ser comparado com curvas de crescimento específicas para idade e sexo (percentis), como as da OMS ou CDC. Um profissional de saúde (pediatra, nutricionista) deve fazer essa interpretação para avaliar adequadamente o estado nutricional.</p>
+                    <p class="faq-answer">O valor de IMC calculado para crianças e adolescentes (até 19 anos) não é interpretado da mesma forma que o de adultos. Ele deve ser comparado com curvas de crescimento específicas para idade e sexo (percentis), como as da OMS ou CDC. Um profissional de saúde (pediatra, nutricionista) deve fazer essa interpretação para avaliar adequadamente o estado nutricional.</p>
                 </details>
             </div>
         </div>

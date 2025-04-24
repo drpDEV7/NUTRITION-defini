@@ -7,8 +7,12 @@
     --branco: #FFFFFF;
     --cinza: #f0f0f0;
     --cinza-texto: #555;
+    --cinza-claro: #e0e0e0;
+    --vermelho-erro: #e74c3c;
+    --amarelo-aviso: #f0ad4e;
     --sombra: 0 8px 16px rgba(0, 0, 0, 0.08);
     --sombra-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
+    --sombra-interna: inset 0 2px 4px rgba(0,0,0,0.06);
 }
 
 * {
@@ -146,44 +150,75 @@ body {
     color: var(--verde-escuro);
 }
 
-.calculadoras-grid, .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.intro-p {
+    text-align: center;
+    color: var(--cinza-texto);
+    font-size: 17px;
+    line-height: 1.6;
 }
 
-.calc-card, .blog-card, .dieta-card {
+.calculadoras-grid-ext {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.calc-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.calc-item.placeholder {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    min-height: 100px; /* Prevent collapsing */
+}
+
+
+.calc-card, .blog-card, .dieta-card, .interpretacao-card {
     background: var(--branco);
     padding: 30px;
     border-radius: 15px;
     box-shadow: var(--sombra);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 30px;
+    margin-bottom: 0; /* Removed default margin */
+    width: 100%;
 }
 
-.calc-card:hover, .blog-card:hover, .dieta-card:hover {
-    transform: translateY(-5px);
+.calc-card:hover, .blog-card:hover, .dieta-card:hover, .interpretacao-card:hover {
+    transform: translateY(-3px);
     box-shadow: var(--sombra-hover);
 }
 
-.calc-card h3, .blog-card h3, .dieta-card h3 {
-    font-size: 22px;
+.calc-card h3, .blog-card h3, .dieta-card h3, .calc-card h4, .interpretacao-card h4 {
+    font-size: 20px;
     margin-bottom: 20px;
     color: var(--verde-escuro);
     display: flex;
     align-items: center;
+    font-weight: 600;
 }
+.interpretacao-card h4 {
+     font-size: 18px;
+}
+
 
 .icon-title {
     margin-right: 10px;
     color: var(--verde-claro);
 }
 
-.calc-card p, .blog-card p, .dieta-card p:not(.faq-answer) {
+.calc-card p, .blog-card p, .dieta-card p:not(.faq-answer), .interpretacao-card p {
     font-size: 16px;
     line-height: 1.7;
     color: var(--cinza-texto);
     margin-bottom: 15px;
+}
+.interpretacao-card p:last-child {
+    margin-bottom: 0;
 }
 
 .calc-card input, .calc-card select,
@@ -191,10 +226,11 @@ body {
     width: 100%;
     padding: 12px 15px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--cinza-claro);
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fdfdfd;
 }
 
 .calc-card input:focus, .calc-card select:focus,
@@ -216,6 +252,7 @@ body {
     transition: all 0.3s ease;
     display: inline-block;
     margin-top: 10px;
+    width: 100%;
 }
 
 .calc-btn:hover, .form-btn:hover {
@@ -224,12 +261,25 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#imc-resultado, #tmb-resultado, #pi-resultado, #cadastro-resultado, #imc-infantil-resultado {
+.resultado-calc, #cadastro-resultado {
     margin-top: 15px;
     font-weight: 600;
     color: var(--verde-escuro);
-    min-height: 1.5em;
+    min-height: 2.5em; /* Allow for two lines easily */
     line-height: 1.4;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+.resultado-calc small {
+    font-weight: 400;
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
+    color: var(--cinza-texto);
+}
+.resultado-calc .warn {
+    color: var(--amarelo-aviso);
+    font-weight: 600;
 }
 
 .dieta-section {
@@ -275,6 +325,10 @@ body {
 .cadastro-form {
     max-width: 900px;
     margin: 0 auto;
+    background: var(--branco);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--sombra);
 }
 .form-grid {
     display: grid;
@@ -285,8 +339,9 @@ body {
 
 .crianca-campos {
     display: none;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--cinza-claro);
     padding-top: 20px;
+    margin-top: 20px;
 }
 
 .cadastro-form .form-btn {
@@ -298,14 +353,32 @@ body {
 
 #cadastro-resultado {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
     font-weight: bold;
     min-height: 1.5em;
 }
 
-.blog-card p {
-    margin-bottom: 0;
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+.blog-card p {
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+.link-discreto {
+    color: var(--verde-claro);
+    text-decoration: none;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: color 0.3s;
+}
+.link-discreto:hover {
+    color: var(--verde-escuro);
+    text-decoration: underline;
+}
+
 
 #sugestoes .intro-p {
     text-align: center;
@@ -351,7 +424,7 @@ body {
     margin-top: 20px;
     padding: 15px;
     background-color: #fdf7e8;
-    border-left: 4px solid #f0ad4e;
+    border-left: 4px solid var(--amarelo-aviso);
     color: #8a6d3b;
     border-radius: 0 5px 5px 0;
     display: flex;
@@ -362,7 +435,7 @@ body {
     margin-right: 10px;
     font-size: 18px;
 }
-.warn-icon { color: #f0ad4e; }
+.warn-icon { color: var(--amarelo-aviso); }
 .info-icon { color: #31708f; }
 
 .dieta-card .info-disclaimer {
@@ -385,7 +458,8 @@ body {
     margin-bottom: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
+    border: 1px solid var(--cinza-claro);
+    overflow: hidden;
 }
 
 .faq-question {
@@ -406,6 +480,7 @@ body {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     transition: transform 0.3s ease;
+    color: var(--verde-claro);
 }
 
 .faq-item[open] > .faq-question::after {
@@ -414,7 +489,6 @@ body {
 
 .faq-item[open] > .faq-question {
     background-color: #f9f9f9;
-    border-bottom: 1px solid #eee;
 }
 
 .faq-answer {
@@ -422,7 +496,7 @@ body {
     font-size: 15px;
     line-height: 1.7;
     color: var(--cinza-texto);
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--cinza-claro);
     margin: 0;
 }
 
@@ -451,11 +525,129 @@ footer {
     text-decoration: none;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     z-index: 999;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #whatsapp-float:hover {
     transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+/* Calculadoras Page Specific Styles */
+.tipo-calculadora-selector {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.tipo-calculadora-selector p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.tipo-btn {
+    background-color: var(--branco);
+    color: var(--verde-escuro);
+    border: 2px solid var(--verde-claro);
+    padding: 10px 25px;
+    margin: 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.tipo-btn:hover {
+    background-color: var(--bege);
+    border-color: var(--verde-escuro);
+}
+.tipo-btn.active {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border-color: var(--verde-escuro);
+}
+
+.calculadoras-container {
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.calc-section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: var(--verde-escuro);
+    font-weight: 700;
+}
+
+
+.interpretacao-card {
+    background-color: var(--bege);
+    border: 1px solid #e0d8c7;
+    padding: 25px;
+}
+
+.interpretacao-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.interpretacao-card th, .interpretacao-card td {
+    border: 1px solid #d3c8b3;
+    padding: 10px;
+    text-align: left;
+}
+.interpretacao-card th {
+    background-color: #e0d8c7;
+    font-weight: 600;
+}
+.interpretacao-card td:first-child {
+    font-weight: 500;
+     white-space: nowrap;
+}
+
+.disclaimer-calc {
+    font-size: 14px !important;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.03);
+    border-left: 3px solid var(--cinza-texto);
+    color: var(--cinza-texto) !important;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0 !important;
+}
+.disclaimer-calc i {
+    margin-right: 8px;
+    color: inherit;
+}
+.interpretacao-card .disclaimer-calc i.fa-exclamation-triangle {
+    color: var(--amarelo-aviso);
+}
+.interpretation-warning {
+    background-color: #fff7e6;
+    border-color: var(--amarelo-aviso);
+}
+.interpretation-warning h4 {
+    color: #c67c05;
+}
+.interpretation-warning ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    color: var(--cinza-texto);
+}
+.interpretation-warning strong {
+     color: var(--verde-escuro);
+}
+.interpretation-warning .disclaimer-calc {
+     border-left-color: var(--verde-escuro);
+     background-color: rgba(26, 60, 52, 0.05);
 }
 
 
@@ -508,18 +700,21 @@ footer {
 
     .section { padding: 60px 0; }
     .section h2 { font-size: 30px; }
+    .calc-section-title { font-size: 24px; }
 
-    .calculadoras-grid, .blog-grid {
+    .calculadoras-grid-ext, .blog-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 25px;
     }
 
-    .calc-card, .blog-card, .dieta-card {
+    .calc-card, .blog-card, .dieta-card, .interpretacao-card {
         padding: 25px;
-        margin-bottom: 20px;
+        margin-bottom: 0;
     }
 
-     .calc-card h3, .blog-card h3, .dieta-card h3 { font-size: 20px; }
+     .calc-card h3, .blog-card h3, .dieta-card h3, .calc-card h4, .interpretacao-card h4 { font-size: 18px; }
+     .interpretacao-card h4 { font-size: 17px; }
+
 
     .dieta-options {
         flex-direction: column;
@@ -533,6 +728,8 @@ footer {
     }
 
     .form-grid { grid-template-columns: 1fr; }
+    .cadastro-form { padding: 30px 25px;}
+
 
     .faq-question { padding: 15px 20px; }
     .faq-answer { padding: 15px 20px; font-size: 14px;}
@@ -544,4 +741,13 @@ footer {
         right: 20px;
         font-size: 25px;
     }
+
+    .tipo-btn {
+        padding: 8px 20px;
+        font-size: 15px;
+        margin: 5px;
+    }
+    .interpretacao-card table { font-size: 13px; }
+    .interpretacao-card th, .interpretacao-card td { padding: 8px; }
+
 }
