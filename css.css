@@ -5,7 +5,7 @@
     --verde-claro: #76B947;
     --bege: #F4E9D7;
     --branco: #FFFFFF;
-    --cinza: #f0f0f0; /* Slightly adjusted grey */
+    --cinza: #f0f0f0;
     --cinza-texto: #555;
     --sombra: 0 8px 16px rgba(0, 0, 0, 0.08);
     --sombra-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
@@ -16,8 +16,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth; /* Add smooth scrolling */
-    scroll-padding-top: 80px; /* Offset for fixed navbar */
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 }
 
 .container {
-    max-width: 1200px; /* Slightly narrower for better readability */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -57,7 +57,7 @@ body {
 
 .logo-text {
     color: var(--branco);
-    font-size: 26px; /* Slightly adjusted */
+    font-size: 26px;
     font-weight: 700;
     margin-right: 10px;
     transition: transform 0.3s;
@@ -69,7 +69,7 @@ body {
 
 .logo-icon {
     color: var(--bege);
-    font-size: 22px; /* Slightly adjusted */
+    font-size: 22px;
 }
 
 #menu-toggle {
@@ -91,7 +91,7 @@ body {
     transition: all 0.3s ease;
     display: block;
     white-space: nowrap;
-    border-radius: 20px; /* Apply border-radius here */
+    border-radius: 20px;
 }
 
 .nav-menu li a:hover, .nav-menu li a.active {
@@ -139,7 +139,7 @@ body {
 }
 
 .section h2 {
-    font-size: 38px; /* Adjusted */
+    font-size: 38px;
     font-weight: 700;
     margin-bottom: 40px;
     text-align: center;
@@ -158,7 +158,7 @@ body {
     border-radius: 15px;
     box-shadow: var(--sombra);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 30px; /* Added margin for diet cards */
+    margin-bottom: 30px;
 }
 
 .calc-card:hover, .blog-card:hover, .dieta-card:hover {
@@ -167,21 +167,21 @@ body {
 }
 
 .calc-card h3, .blog-card h3, .dieta-card h3 {
-    font-size: 22px; /* Adjusted */
+    font-size: 22px;
     margin-bottom: 20px;
     color: var(--verde-escuro);
-    display: flex; /* For icon alignment */
-    align-items: center; /* For icon alignment */
+    display: flex;
+    align-items: center;
 }
 
 .icon-title {
     margin-right: 10px;
-    color: var(--verde-claro); /* Icon color */
+    color: var(--verde-claro);
 }
 
-.calc-card p, .blog-card p, .dieta-card p {
+.calc-card p, .blog-card p, .dieta-card p:not(.faq-answer) {
     font-size: 16px;
-    line-height: 1.7; /* Improved line spacing */
+    line-height: 1.7;
     color: var(--cinza-texto);
     margin-bottom: 15px;
 }
@@ -201,7 +201,7 @@ body {
 .cadastro-form input:focus, .cadastro-form select:focus {
     outline: none;
     border-color: var(--verde-claro);
-    box-shadow: 0 0 0 3px rgba(118, 185, 71, 0.2); /* More visible focus */
+    box-shadow: 0 0 0 3px rgba(118, 185, 71, 0.2);
 }
 
 .calc-btn, .form-btn {
@@ -228,7 +228,7 @@ body {
     margin-top: 15px;
     font-weight: 600;
     color: var(--verde-escuro);
-    min-height: 1.5em; /* Prevent layout shift */
+    min-height: 1.5em;
 }
 
 .dieta-section {
@@ -254,8 +254,8 @@ body {
 .dieta-btn {
     background-color: var(--verde-escuro);
     color: var(--branco);
-    padding: 12px 30px; /* Slightly larger */
-    border-radius: 25px; /* More rounded */
+    padding: 12px 30px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -264,7 +264,7 @@ body {
 
 .dieta-btn:hover {
     background-color: var(--verde-claro);
-    transform: translateY(-3px) scale(1.03); /* Add scale effect */
+    transform: translateY(-3px) scale(1.03);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -299,14 +299,13 @@ body {
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
-    min-height: 1.5em; /* Prevent layout shift */
+    min-height: 1.5em;
 }
 
 .blog-card p {
     margin-bottom: 0;
 }
 
-/* Dietas.html Specific Styles */
 #sugestoes .intro-p {
     text-align: center;
     max-width: 800px;
@@ -314,7 +313,7 @@ body {
     margin-right: auto;
     margin-bottom: 50px;
     color: var(--cinza-texto);
-    font-size: 17px; /* Slightly larger intro text */
+    font-size: 17px;
 }
 
 .dieta-card h4 {
@@ -327,7 +326,7 @@ body {
 
 .dieta-card ul {
     list-style: none;
-    padding-left: 5px; /* Adjust if using icons */
+    padding-left: 5px;
     margin-bottom: 20px;
 }
 
@@ -335,41 +334,96 @@ body {
     margin-bottom: 12px;
     line-height: 1.6;
     color: var(--cinza-texto);
-    display: flex; /* For icon alignment */
-    align-items: flex-start; /* Align icon with top of text */
+    display: flex;
+    align-items: flex-start;
 }
 
 .list-icon {
     color: var(--verde-claro);
     margin-right: 10px;
-    margin-top: 4px; /* Fine-tune vertical alignment */
-    font-size: 14px; /* Adjust icon size */
+    margin-top: 4px;
+    font-size: 14px;
 }
 
 .disclaimer {
     font-size: 15px;
     margin-top: 20px;
     padding: 15px;
-    background-color: #fdf7e8; /* Light beige background */
-    border-left: 4px solid #f0ad4e; /* Warning color border */
-    color: #8a6d3b; /* Darker text for contrast */
+    background-color: #fdf7e8;
+    border-left: 4px solid #f0ad4e;
+    color: #8a6d3b;
     border-radius: 0 5px 5px 0;
-    display: flex; /* For icon alignment */
-    align-items: center; /* For icon alignment */
+    display: flex;
+    align-items: center;
 }
 
 .warn-icon, .info-icon {
     margin-right: 10px;
-    font-size: 18px; /* Icon size */
+    font-size: 18px;
 }
 .warn-icon { color: #f0ad4e; }
-.info-icon { color: #31708f; } /* Info color */
-.dieta-card #vida-saudavel .disclaimer { /* Different style for info */
+.info-icon { color: #31708f; }
+
+.dieta-card .info-disclaimer {
      background-color: #e7f3f8;
      border-left-color: #31708f;
      color: #31708f;
 }
 
+#faq {
+    background-color: var(--bege);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--branco);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.faq-question {
+    padding: 18px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    color: var(--verde-escuro);
+    transition: background-color 0.2s ease;
+}
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-question::after {
+    content: '\f078'; /* Font Awesome Angle Down */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] > .faq-question::after {
+    transform: rotate(180deg);
+}
+
+.faq-item[open] > .faq-question {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+}
+
+.faq-answer {
+    padding: 20px 25px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--cinza-texto);
+    border-top: 1px solid #eee;
+    margin: 0;
+}
 
 footer {
     background: var(--verde-escuro);
@@ -379,6 +433,30 @@ footer {
     font-size: 14px;
     margin-top: 50px;
 }
+
+#whatsapp-float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    text-decoration: none;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+#whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
 
 @media (max-width: 768px) {
     .navbar { padding: 10px 0; }
@@ -401,6 +479,7 @@ footer {
         align-items: center;
         z-index: 1000;
         box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        overflow-y: auto;
     }
 
     #menu-toggle:checked ~ .nav-menu { left: 0; }
@@ -427,7 +506,7 @@ footer {
     .banner-image { max-height: 60vh; }
 
     .section { padding: 60px 0; }
-    .section h2 { font-size: 30px; } /* Adjusted */
+    .section h2 { font-size: 30px; }
 
     .calculadoras-grid, .blog-grid {
         grid-template-columns: 1fr;
@@ -436,7 +515,7 @@ footer {
 
     .calc-card, .blog-card, .dieta-card {
         padding: 25px;
-        margin-bottom: 20px; /* Adjusted margin */
+        margin-bottom: 20px;
     }
 
      .calc-card h3, .blog-card h3, .dieta-card h3 { font-size: 20px; }
@@ -444,13 +523,24 @@ footer {
     .dieta-options {
         flex-direction: column;
         align-items: center;
-        gap: 15px; /* Reduced gap */
+        gap: 15px;
     }
     .dieta-btn {
         width: 80%;
         text-align: center;
-        padding: 12px 20px; /* Adjust padding */
+        padding: 12px 20px;
     }
 
     .form-grid { grid-template-columns: 1fr; }
+
+    .faq-question { padding: 15px 20px; }
+    .faq-answer { padding: 15px 20px; font-size: 14px;}
+
+    #whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
 }
