@@ -39,14 +39,14 @@
             <h2>Calculadoras Nutricionais</h2>
             <div class="calculadoras-grid">
                 <div class="calc-card">
-                    <h3>IMC</h3>
+                    <h3>IMC (Adulto)</h3>
                     <input type="number" placeholder="Peso (kg)" id="imc-peso" step="0.1">
                     <input type="number" placeholder="Altura (m)" id="imc-altura" step="0.01">
                     <button onclick="calcularIMC()" class="calc-btn">Calcular</button>
                     <p id="imc-resultado"></p>
                 </div>
                 <div class="calc-card">
-                    <h3>TMB</h3>
+                    <h3>TMB (Adulto)</h3>
                     <select id="tmb-sexo">
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
@@ -58,7 +58,7 @@
                     <p id="tmb-resultado"></p>
                 </div>
                 <div class="calc-card">
-                    <h3>Peso Ideal</h3>
+                    <h3>Peso Ideal (Adulto)</h3>
                     <select id="pi-sexo">
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
@@ -67,7 +67,21 @@
                     <button onclick="calcularPesoIdeal()" class="calc-btn">Calcular</button>
                     <p id="pi-resultado"></p>
                 </div>
+                 <div class="calc-card">
+                    <h3>IMC Infantil (0-19 anos)</h3>
+                    <select id="imc-infantil-sexo">
+                        <option value="masculino">Menino</option>
+                        <option value="feminino">Menina</option>
+                    </select>
+                    <input type="number" placeholder="Idade (anos)" id="imc-infantil-idade-anos" min="0" max="19">
+                    <input type="number" placeholder="Idade (meses)" id="imc-infantil-idade-meses" min="0" max="11">
+                    <input type="number" placeholder="Peso (kg)" id="imc-infantil-peso" step="0.1">
+                    <input type="number" placeholder="Altura (m)" id="imc-infantil-altura" step="0.01">
+                    <button onclick="calcularIMCInfantil()" class="calc-btn">Calcular</button>
+                    <p id="imc-infantil-resultado"></p>
+                </div>
             </div>
+             <p style="text-align: center; margin-top: 20px; color: var(--cinza-texto);">Lembre-se: calculadoras oferecem estimativas. Consulte sempre um profissional de saúde.</p>
         </div>
     </section>
 
@@ -147,7 +161,7 @@
             <div class="faq-container">
                 <details class="faq-item">
                     <summary class="faq-question">As calculadoras substituem uma consulta?</summary>
-                    <p class="faq-answer">Não. As calculadoras fornecem estimativas úteis, mas não consideram sua saúde individual, histórico ou necessidades específicas. Sempre consulte um nutricionista ou médico para orientação personalizada.</p>
+                    <p class="faq-answer">Não. As calculadoras fornecem estimativas úteis, mas não consideram sua saúde individual, histórico ou necessidades específicas. O IMC infantil, em particular, deve ser interpretado usando curvas de crescimento por um profissional. Sempre consulte um nutricionista ou médico para orientação personalizada.</p>
                 </details>
                 <details class="faq-item">
                     <summary class="faq-question">As dietas sugeridas são personalizadas?</summary>
@@ -159,7 +173,11 @@
                 </details>
                  <details class="faq-item">
                     <summary class="faq-question">O que é TMB?</summary>
-                    <p class="faq-answer">TMB significa Taxa Metabólica Basal. É a quantidade mínima de energia (calorias) que seu corpo precisa para manter as funções vitais em repouso, como respiração e circulação.</p>
+                    <p class="faq-answer">TMB significa Taxa Metabólica Basal. É a quantidade mínima de energia (calorias) que seu corpo precisa para manter as funções vitais em repouso, como respiração e circulação, aplicável principalmente a adultos.</p>
+                </details>
+                 <details class="faq-item">
+                    <summary class="faq-question">Como interpretar o IMC Infantil?</summary>
+                    <p class="faq-answer">O valor de IMC calculado para crianças e adolescentes (0-19 anos) não é interpretado da mesma forma que o de adultos. Ele deve ser comparado com curvas de crescimento específicas para idade e sexo (percentis), como as da OMS ou CDC. Um profissional de saúde (pediatra, nutricionista) deve fazer essa interpretação para avaliar adequadamente o estado nutricional.</p>
                 </details>
             </div>
         </div>

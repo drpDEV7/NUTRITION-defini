@@ -224,11 +224,12 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#imc-resultado, #tmb-resultado, #pi-resultado, #cadastro-resultado {
+#imc-resultado, #tmb-resultado, #pi-resultado, #cadastro-resultado, #imc-infantil-resultado {
     margin-top: 15px;
     font-weight: 600;
     color: var(--verde-escuro);
     min-height: 1.5em;
+    line-height: 1.4;
 }
 
 .dieta-section {
@@ -401,7 +402,7 @@ body {
 .faq-question::-webkit-details-marker { display: none; }
 
 .faq-question::after {
-    content: '\f078'; /* Font Awesome Angle Down */
+    content: '\f078';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     transition: transform 0.3s ease;

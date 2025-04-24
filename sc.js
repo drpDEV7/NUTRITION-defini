@@ -2,8 +2,9 @@ function calcularIMC() {
     const peso = parseFloat(document.getElementById('imc-peso').value);
     const altura = parseFloat(document.getElementById('imc-altura').value);
     const resultadoElement = document.getElementById('imc-resultado');
+    resultadoElement.style.color = 'var(--verde-escuro)';
 
-    if (peso && altura && altura > 0) {
+    if (peso && altura && altura > 0 && peso > 0) {
         const imc = peso / (altura * altura);
         let classificacao = '';
         if (imc < 18.5) classificacao = 'Abaixo do peso';
@@ -23,6 +24,7 @@ function calcularTMB() {
     const alturaCm = parseFloat(document.getElementById('tmb-altura').value);
     const idade = parseInt(document.getElementById('tmb-idade').value);
     const resultadoElement = document.getElementById('tmb-resultado');
+    resultadoElement.style.color = 'var(--verde-escuro)';
 
     if (peso && alturaCm && idade && peso > 0 && alturaCm > 0 && idade > 0) {
         let tmb;
@@ -32,7 +34,6 @@ function calcularTMB() {
             tmb = 447.593 + (9.247 * peso) + (3.098 * alturaCm) - (4.330 * idade);
         }
         resultadoElement.innerText = `TMB (aprox.): ${tmb.toFixed(0)} kcal/dia`;
-        resultadoElement.style.color = 'var(--verde-escuro)';
     } else {
         resultadoElement.innerText = 'Preencha todos os campos com valores válidos!';
          resultadoElement.style.color = 'red';
@@ -43,8 +44,9 @@ function calcularPesoIdeal() {
     const sexo = document.getElementById('pi-sexo').value;
     const alturaCm = parseFloat(document.getElementById('pi-altura').value);
     const resultadoElement = document.getElementById('pi-resultado');
+    resultadoElement.style.color = 'var(--verde-escuro)';
 
-    if (alturaCm && alturaCm > 100) { // Added a basic minimum height check
+    if (alturaCm && alturaCm > 100) {
          let pesoIdeal;
          if (sexo === 'masculino') {
              pesoIdeal = 50 + 0.91 * (alturaCm - 152.4);
@@ -54,14 +56,48 @@ function calcularPesoIdeal() {
 
          if (pesoIdeal > 0) {
              resultadoElement.innerText = `Peso Ideal (aprox.): ${pesoIdeal.toFixed(1)} kg`;
-             resultadoElement.style.color = 'var(--verde-escuro)';
          } else {
               resultadoElement.innerText = 'Altura resulta em valor inválido.';
               resultadoElement.style.color = 'red';
          }
 
     } else {
-        resultadoElement.innerText = 'Preencha uma altura válida (cm)!';
+        resultadoElement.innerText = 'Preencha uma altura válida (cm > 100)!';
+        resultadoElement.style.color = 'red';
+    }
+}
+
+function calcularIMCInfantil() {
+    const peso = parseFloat(document.getElementById('imc-infantil-peso').value);
+    const altura = parseFloat(document.getElementById('imc-infantil-altura').value);
+    const idadeAnos = parseInt(document.getElementById('imc-infantil-idade-anos').value);
+    const idadeMeses = parseInt(document.getElementById('imc-infantil-idade-meses').value);
+    const sexo = document.getElementById('imc-infantil-sexo').value;
+    const resultadoElement = document.getElementById('imc-infantil-resultado');
+    resultadoElement.style.color = 'var(--verde-escuro)';
+
+    if (isNaN(idadeAnos) || idadeAnos < 0 || idadeAnos > 19) {
+         resultadoElement.innerText = 'Idade em anos inválida (0-19).';
+         resultadoElement.style.color = 'red';
+         return;
+    }
+     if (isNaN(idadeMeses) || idadeMeses < 0 || idadeMeses > 11) {
+         resultadoElement.innerText = 'Idade em meses inválida (0-11).';
+         resultadoElement.style.color = 'red';
+         return;
+    }
+     if (idadeAnos === 0 && idadeMeses === 0) {
+         resultadoElement.innerText = 'Informe a idade em anos e/ou meses.';
+         resultadoElement.style.color = 'red';
+         return;
+     }
+
+
+    if (peso && altura && altura > 0 && peso > 0) {
+        const imc = peso / (altura * altura);
+        resultadoElement.innerHTML = `IMC Calculado: ${imc.toFixed(2)}<br><small style='color: #e67e22; display: block; margin-top: 5px;'><strong>Importante:</strong> Este valor de IMC deve ser interpretado por um profissional de saúde usando curvas de crescimento (percentis) específicas para idade e sexo.</small>`;
+    } else {
+        resultadoElement.innerText = 'Preencha peso e altura válidos!';
         resultadoElement.style.color = 'red';
     }
 }
@@ -74,15 +110,43 @@ function toggleCamposCrianca() {
     const isCrianca = tipoCliente === 'crianca';
 
     camposCrianca.style.display = isCrianca ? 'grid' : 'none';
-    childInputs.forEach(input => { input.required = isCrianca; });
+
+    childInputs.forEach(input => {
+        if (isCrianca) {
+            if (input.id !== 'data-nascimento' && input.id !== 'altura-pai' && input.id !== 'altura-mae' && input.id !== 'historico-peso' && input.id !== 'historico-altura' && input.id !== 'fase-escolar') {
+                 input.required = true;
+             } else {
+                 input.required = false;
+             }
+         } else {
+             input.required = false;
+         }
+    });
 }
+
 
 function cadastrarCliente() {
     const form = document.getElementById('cadastro-form');
     const resultadoElement = document.getElementById('cadastro-resultado');
     const formData = new FormData(form);
     const dados = {};
-    let allFieldsValid = form.checkValidity(); // Use built-in form validation
+    let allFieldsValid = true;
+
+
+    for (let field of form.elements) {
+        if (field.required && !field.value) {
+            allFieldsValid = false;
+            break;
+        }
+         if (field.type === 'email' && field.value && !field.checkValidity()) {
+             allFieldsValid = false;
+             break;
+         }
+          if (field.type === 'number' && field.value && !field.checkValidity()) {
+             allFieldsValid = false;
+             break;
+         }
+    }
 
     formData.forEach((value, key) => {
         dados[key] = value;
@@ -95,12 +159,15 @@ function cadastrarCliente() {
         form.reset();
         toggleCamposCrianca();
     } else {
-         resultadoElement.innerText = 'Preencha todos os campos obrigatórios corretamente!';
+         resultadoElement.innerText = 'Preencha todos os campos obrigatórios (*) corretamente!';
          resultadoElement.style.color = 'red';
-         // Optionally, find the first invalid field and focus it
-         const firstInvalid = form.querySelector(':invalid');
+         const firstInvalid = form.querySelector(':invalid:required');
          if(firstInvalid) {
-            firstInvalid.focus();
+            try {
+                firstInvalid.focus();
+            } catch(e) {
+                console.warn("Could not focus on invalid field:", firstInvalid);
+            }
          }
     }
 }
@@ -110,7 +177,6 @@ function closeMenu() {
     const menuToggle = document.getElementById('menu-toggle');
     if (menuToggle && menuToggle.checked) {
         menuToggle.checked = false;
-        // Manually trigger change event to update icons if needed
         const event = new Event('change');
         menuToggle.dispatchEvent(event);
     }
@@ -119,8 +185,8 @@ function closeMenu() {
 document.addEventListener('DOMContentLoaded', () => {
     const tipoClienteSelect = document.getElementById('tipo-cliente');
     if(tipoClienteSelect) {
-       toggleCamposCrianca(); // Initialize on load
-       tipoClienteSelect.addEventListener('change', toggleCamposCrianca); // Ensure listener is active
+       toggleCamposCrianca();
+       tipoClienteSelect.addEventListener('change', toggleCamposCrianca);
     }
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -140,6 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         menuToggle.addEventListener('change', updateIcons);
-        updateIcons(); // Initial state check
+        updateIcons();
     }
+
+    const cadastroForm = document.getElementById('cadastro-form');
+     if (cadastroForm) {
+         cadastroForm.setAttribute('novalidate', true);
+         cadastroForm.addEventListener('submit', function(event) {
+             event.preventDefault();
+             cadastrarCliente();
+         });
+     }
 });
